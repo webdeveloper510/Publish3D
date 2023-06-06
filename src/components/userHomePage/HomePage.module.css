@@ -1,0 +1,20 @@
+.buttn{
+    font-size: 22px;
+    padding: 0.75em;
+    /* padding-top: 0.75em;
+    padding-bottom: 0.75em; */
+    /* position: relative; */
+    z-index: 1;
+    background: #0c1742;
+    border-radius:25px 4px 4px 4px;
+    font-weight: 600;
+    margin-left: 20px;
+    margin-top: 100px;
+    color: white;
+    border-color: linear-gradient(90deg,#D867FF1A,#9B13EF);
+    transition: 0.3s ease-in-out;
+}
+
+.buttn:hover {
+    background:linear-gradient(90deg,#D867FF1A,#9B13EF);
+}

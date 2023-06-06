@@ -1,0 +1,208 @@
+.container {
+      margin: 0 auto;
+      width: 1170px;
+    }
+    .Nav {
+      width: 100%;
+      float: left;
+    }
+    ul {
+      width: 100%;
+      float: left;
+    }
+    li {
+      display: inline-block;
+      margin: 4px 5px 3px 46px;
+    }
+    button {
+      padding: 12px 8px;
+      outline: none;
+      border: navajowhite;
+      border-bottom: 2px solid;
+      font-family: sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.8s;
+    }
+    button:hover{
+    color: #fff;
+    background: #000;
+    }
+
+    #blocker {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    #instructions {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .Logo {
+      font-size: 30px;
+      font-weight: bold;
+     
+  }
+  .Logo a {
+    background: -webkit-linear-gradient(#f6cea8,#ffa051);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-light.mt-12.ml-3.mb-5.banner {
+  margin: 9pc 0 0 0;
+  padding: 0;
+  display: flex;
+  width: 50%;
+}
+p.banner-text {
+  font-size: 59px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #fff;
+  /* background: -webkit-linear-gradient(#dcaf82,#ae683a,#d1b8a7,#f6f5f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+a.HomePage_buttn__vRCUi {
+  padding: 0.5em 0.85em !important;
+  font-weight: 300 !important;
+  font-family: sans-serif !important;
+  margin: 0 !important;
+  background: #b9711c !important;
+  transition: 0.9s !important;
+  cursor: pointer !important;
+}
+button.btn.btn-danger.me-5 {
+  background: #b9711c;
+  border: none;
+}
+.HomePage_buttn__vRCUi:hover {
+  background: linear-gradient(90deg,#301909,#0d0c0e) !important;
+  transition: 0.9s !important;
+  cursor: pointer !important;
+}
+button.btn.btn-danger.me-5:hover{
+  background: linear-gradient(90deg,#301909,#0d0c0e) !important;
+}
+div#AboutSection {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+}
+div#Content {
+  margin: 0 auto;
+  width: 1170px;
+}
+.wrap.mcb-wrap.mcb-wrap-1039d6200.one.tablet-one.mobile-one.valign-top.clearfix {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+
+.column_attr.mfn-inline-editor.clearfix.align_center {
+  margin-top: 30px;
+  text-align: center;
+}
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.image_wrapper {
+  display: flex;
+  width: 100%;
+  margin-top: 25px;
+  background-size: 100% 100%;
+}
+img, video {
+  max-width: 35%;
+  height: 400px;
+  margin-top: 15px;
+}
+h5 {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 30px;
+}
+.column_attr.mfn-inline-editor.clearfix {
+  padding-left: 30px;
+  margin-top: 10px;
+}
+p {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: sans-serif;
+  color: #696464;
+}
+.mcb-wrap-inner.mcb-wrap-inner-fcd5a3d6c {
+  width: 100%;
+  margin-top: 30px;
+  padding: 0;
+  display: flex;
+}
+img.scale-with-grid.image {
+  max-width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.resource {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+h1.text-center {
+  font-size: 35px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+p.paraRes {
+  font-size: 15px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: 100;
+}
+.card.d-flex.flex-column {
+  border: 1px solid #b9711c;
+}
+h5.card-title {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+p.boxPara {
+  margin-top: 6px;
+  padding: 0;
+  margin-bottom: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+a.btn.btn-primary {
+  background: #b9711c;
+  border: none;
+  margin-left: 52px;
+  transition: 0.9s !important;
+  cursor: pointer !important;
+  color: #000;
+}
+a.btn.btn-primary:hover{
+  background: #000;
+  color: #fff;
+}
