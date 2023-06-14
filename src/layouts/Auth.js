@@ -50,7 +50,8 @@ return (
           style={{
             backgroundImage:
               "url(" + require("assets/img/register_bg_2.png") + ")",
-              zIndex:'-2'
+              zIndex:'-2',
+              minHeight: "98vh",
           }}
         ></div>
         <Switch>
@@ -70,7 +71,7 @@ return (
     <Route path="/home" exact component={HomePage}/>
    
       <Route path="/forgot" exact component={Forgot} />
-      <Route path="/gallery" exact component={Gallery}/>
+      <Route path="/gallery/:SelectedGallery" exact component={Gallery}/>
       <Redirect from="/" to="/home" />
     </Switch>
     </>

@@ -1,5 +1,5 @@
 import Navbar from "components/Navbars/AdminNavbar";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import classes from "./HomePage.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import Sidebar from "components/Sidebar/Sidebar";
@@ -10,6 +10,7 @@ import ResourcesPage from "./ResourcesPage";
 import Footer from "components/Footers/Footer";
 
 const HomePage = () => {
+  const [SelectedGallery , selectAGallery] = useState(null)
   const history = useHistory()
   const token = !!localStorage.getItem("Token");
   const handleLogout=() =>{
@@ -38,6 +39,14 @@ const HomePage = () => {
     }
   };
 
+
+
+  // Select the Galllery -------------------------------->
+
+  const checktheValue =(e)=>{
+    selectAGallery(e.target.value);
+  }
+  console.log(SelectedGallery)
   return (
     <Fragment>
       <div  style={{
@@ -55,7 +64,7 @@ const HomePage = () => {
         paddingTop: "40px",
       }}
     >
-      <div className="container">
+      <div className="home-container">
         <div className="d-flex align-items-center justify-content-between w-100 me-5 ml-5 text-light fs-5">
           <div className="Logo">
             <Link to="#"> ART Gallery </Link>
@@ -96,16 +105,23 @@ const HomePage = () => {
         <div className="text-light mt-12 ml-3 mb-5 banner">
           <p className="banner-text">Explore The Art Around The World !</p>
         </div>
-        <Link to="/gallery" className={classes.buttn}>
+        <select className="select-gallery" id="gallery"  onChange={checktheValue}>
+        <option value="">--Please choose an option--</option>
+          <option value="artGallery-1" > Art Gallery One</option>
+          <option value="artGallery-2" > Art Gallery Two</option>
+          <option value="artGallery-3" > Art Gallery Three</option>
+          <option value="artGallery-4" > Art Gallery Four</option>
+        </select>
+        <Link to={`/gallery/${SelectedGallery}`} className={classes.buttn}>
           Explore
         </Link>
       </div>
     </div>
-    <div  id='AboutSection'>
+    <div  id='AboutSection' className="mt-4">
 
     <AboutPage  />
     </div>
-    <div id='resourcesSection'>
+    <div id='resourcesSection' className="mt-4">
       <ResourcesPage />
     </div>
     <Footer />

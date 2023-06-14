@@ -67,7 +67,7 @@ const AboutPage = () => {
 
         {/* Completed */}
 
-        <div class="section_wrapper mcb-section-inner mcb-section-inner-250fc08da">
+        <div class="section_wrapper mcb-section-inner mcb-section-inner-250fc08da mt-5">
           <div class="column_attr mfn-inline-editor clearfix align_center">
             <h3>3D Art Gallery attractions</h3>
             <div

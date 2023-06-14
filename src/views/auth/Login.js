@@ -13,38 +13,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setError] = useState({});
-  const [isLoggedin, setIsLoggedin] = useState(false);
+
 
   const ctx = useContext(contextObject);
-
-  // const [validated, setValidated] = useState(false);
   let history = useHistory();
   const handleSubmit = (event) => {
     console.log("ok");
     event.preventDefault();
-
-    localStorage.setItem("Token", 1);
     ctx.setisToken(true);
-    history.push("/home");
-    // let item = { email, password };
-    let item = { email: "user01@gmail.com", password: "123456" };
-    console.log(item);
+
+    let item = { email, password };
     setError(validation(item));
-    axios.post(API.BASE_URL + "api/login", item).then(
-      (res) => {
-        console.log("RESPONSE FROM POST", res.data);
+    axios.post(API.BASE_URL + "api/login", item)
+    .then(function(res)  {
         toast.success("Login success");
-        localStorage.setItem("Token", 123456);
-        console.log(res.data.success.token);
-        setIsLoggedin(true);
-        history.push("/home");
-        console.log("login ");
-      },
-      (err) => {
+        const tokenRegex = /"token":"([^"]+)"/;
+        const match = res.data.match(tokenRegex);
+        const token = match ? match[1] : null;
+        localStorage.setItem("Token", token);
+        history.push('/')
+      }).catch(function(err) {
         console.log("Error While Posting Data", err);
         toast.error("Invalid Credentials");
-      }
-    );
+      });
   };
   return (
     <>

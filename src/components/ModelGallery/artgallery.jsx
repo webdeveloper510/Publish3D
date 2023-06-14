@@ -1,12 +1,15 @@
-import React , {useEffect} from "react";
+import React , {useEffect, useState} from "react";
 import * as THREE from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import sceneView from "../../assets/GLTF/Sub01.glb"
 import {GLTFLoader} from "../../../node_modules/three/examples/jsm/loaders/GLTFLoader";
-import Env4K from "../../assets/HDRI/modern_buildings_4k.hdr"
-import {FirstPersonControls} from "../../../node_modules/three/examples/jsm/controls/FirstPersonControls"
+import { PointerLockControls } from "../../../node_modules/three/examples/jsm/controls/PointerLockControls";
 import MirrorImage from "../../../src/assets/images/clouds2.jpg"
-// import img0 from "../../../src/assets/Pictures/0.jpeg"
+import { useParams } from "react-router-dom";
+
+
+// Images ARTGALLERY-1
+
 import img1 from "../../assets/Pictures/1.jpeg"
 import img2 from "../../assets/Pictures/2.jpeg"
 import img3 from "../../assets/Pictures/3.jpeg"
@@ -16,149 +19,121 @@ import img6 from "../../assets/Pictures/6.jpeg"
 import img7 from "../../assets/Pictures/7.jpeg"
 import img8 from "../../assets/Pictures/8.jpeg"
 import img9 from "../../assets/Pictures/9.jpeg"
-import  img10 from "../../assets/Pictures/10.jpeg"
-import  img11 from "../../assets/Pictures/11.jpeg"
-import  img12 from "../../assets/Pictures/12.jpeg"
-import  img13 from "../../assets/Pictures/13.jpeg"
-import  img14 from "../../assets/Pictures/14.jpeg"
-import  img15 from "../../assets/Pictures/15.jpeg"
-import  img16 from "../../assets/Pictures/16.jpeg"
+import img10 from "../../assets/Pictures/10.jpeg"
+import img11 from "../../assets/Pictures/11.jpeg"
+import img12 from "../../assets/Pictures/12.jpeg"
+import img13 from "../../assets/Pictures/13.jpeg"
+import img14 from "../../assets/Pictures/14.jpeg"
+import img15 from "../../assets/Pictures/15.jpeg"
+import img16 from "../../assets/Pictures/16.jpeg"
+
+
+// Images ARTGALLERY-2
+
+import wallTexture from '../../assets/images/textureWalls.jpg'
+import wallTexture2 from '../../assets/images/walltexture2.jpg'
+import wallTexture3 from '../../assets/images/walltexture3.jpg'
+import wallTexture4 from '../../assets/images/walltexture4.jpg'
+import wallTexture5 from '../../assets/images/walltexture5.jpg'
+import wallTexture6 from '../../assets/images/walltexture6.jpeg'
+import wallTexture7 from '../../assets/images/walltexture7.jpg'
+import wallTexture8 from '../../assets/images/walltexture8.jpg'
+import wallTexture9 from '../../assets/images/walltexture9.jpg'
+import wallpaper222 from '../../assets/images/wallpaper222.jpg'
+
+
+// Images ARTGALLERY-3
+
+import gallery1 from "../../assets/images/gallery1.jpeg"
+import gallery2 from "../../assets/images/gallery2.jpeg"
+import gallery3 from "../../assets/images/gallery3.jpeg"
+import gallery4 from "../../assets/images/gallery4.jpeg"
+import gallery5 from "../../assets/images/gallery5.jpeg"
+import gallery6 from "../../assets/images/gallery6.jpeg"
+import gallery7 from "../../assets/images/gallery7.jpeg"
+import gallery8 from "../../assets/images/gallery8.jpeg"
+
+
+// Images ARTGALLERY-3
+
+import bike1 from "../../assets/images/bike1.jpeg"
+import bike2 from "../../assets/images/bike2.jpeg"
+import bike3 from "../../assets/images/bike3.jpeg"
+import bike4 from "../../assets/images/bike4.jpeg"
+import bike5 from "../../assets/images/bike5.jpeg"
+import bike6 from "../../assets/images/bike6.jpeg"
+import bike7 from "../../assets/images/bike7.jpeg"
+import bike8 from "../../assets/images/bike8.jpeg"
+
+import floorwall from "../../assets/images/dark.png"
+import floorwall3 from "../../assets/images/FloorTest3.jpg"
 import InformationButton from "../../assets/Pictures/info.png"
 import { RGBELoader } from "../../../node_modules/three/examples/jsm/loaders/RGBELoader"
-import { FlyControls } from "../../../node_modules/three/examples/jsm/controls/FlyControls"
-import { PointerLockControls } from "three-stdlib";
+// import { PointerLockControls } from "three-stdlib";
 
+let RenderRer = true;
 const ArtWork = ()=>{
+  const {SelectedGallery} = useParams()
+  console.log('-----------------------:------------------------:----------->' , SelectedGallery)
+  const [loadedModel , ModelLoaded] =useState(false);
     useEffect(()=>{
         const Gallery =()=>{
-          
-const ImageArray = [ img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,]
-const objects=[]
-let cameraPersp, cameraOrtho, currentCamera ,buttonGroup ,iconMesh
-let scene, renderer , model ,Flycontrols , firstPerson
+        
 
-init();
+        
+        const ImageArray = [ img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,img1, img2, img3, img4, img5, img6, img7, img8, img9,img10,img11,img12,img13,img14,img15,img16,]
+        const ImageArray2 = [wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8 ,wallTexture9,wallTexture , wallTexture2,wallTexture3 , wallTexture4, wallTexture5 ,wallTexture6 ,wallTexture7 ,wallTexture8]
+        const ImageArray3 = [gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8,gallery1,gallery2,gallery3,gallery4,gallery5,gallery6,gallery7,gallery8]
+        const ImageArray4 = [bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8,bike1,bike2,bike3,bike4,bike5,bike6,bike7,bike8]
+        const objects=[]
+        let cameraPersp, cameraOrtho, currentCamera 
+        let scene, renderer , buttonGroup , iconMesh , orbit
 
+        init();
+        render();
+        function init() {
 
-class Clock {
-
-	constructor( autoStart = true ) {
-
-		this.autoStart = autoStart;
-
-		this.startTime = 0;
-		this.oldTime = 0;
-		this.elapsedTime = 0;
-
-		this.running = false;
-
-	}
-
-	start() {
-
-		this.startTime = now();
-
-		this.oldTime = this.startTime;
-		this.elapsedTime = 0;
-		this.running = true;
-
-	}
-
-	stop() {
-
-		this.getElapsedTime();
-		this.running = false;
-		this.autoStart = false;
-
-	}
-
-	getElapsedTime() {
-
-		this.getDelta();
-		return this.elapsedTime;
-
-	}
-
-	getDelta() {
-
-		let diff = 0;
-
-		if ( this.autoStart && ! this.running ) {
-
-			this.start();
-			return 0;
-
-		}
-
-		if ( this.running ) {
-
-			const newTime = now();
-
-			diff = ( newTime - this.oldTime ) / 1000;
-			this.oldTime = newTime;
-
-			this.elapsedTime += diff;
-
-		}
-
-		return diff;
-
-	}
-
-}
-const clock = new Clock();
-render();
-function now() {
-
-	return ( typeof performance === 'undefined' ? Date : performance ).now(); // see #10732
-
-}
-
-
-
-function init() {
-
-    let orbit 
-
+// -------------------------------Starting A Scene With Render Function -------------------------------------------------------------->
           renderer = new THREE.WebGLRenderer({ antialias: true });
           renderer.setSize( window.innerWidth, window.innerHeight );
           renderer.setPixelRatio( window.devicePixelRatio );
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
           renderer.toneMappingExposure = 0.6;
-          renderer.outputEncoding = THREE.sRGBEncoding;
           renderer.alpha = true;
           document.body.appendChild( renderer.domElement );
-
-
           const aspect = window.innerWidth / window.innerHeight;
 
-          cameraPersp = new THREE.PerspectiveCamera( 75, aspect, 0.1, 1000 );
-          cameraOrtho = new THREE.OrthographicCamera( - 600 * aspect, 600 * aspect, 600, - 600, 0.01, 3000 );
-          currentCamera = cameraPersp;
-
-          firstPerson =  new FirstPersonControls( cameraOrtho , renderer.domElement);
+          // -------------------------------Creating Scene -------------------------------------------------------------------------------------->
 
 
-
-          currentCamera.position.set(  0.2, 0.2, 1.2 );
-
-            // 2. Initiate FlyControls with various params
-            // Flycontrols = new FlyControls( cameraPersp, renderer.domElement );
-            // Flycontrols.movementSpeed = 100;
-            // Flycontrols.rollSpeed = Math.PI / 24;
-            // Flycontrols.autoForward = false;
-            // Flycontrols.dragToLook = true;
-          // currentCamera.lookAt( 200,0 ,0 );
 
           scene = new THREE.Scene();
 
 
+// -------------------------------Creating A CameraPersp and cameraOrtho -------------------------------------------------------------->
 
+          cameraPersp = new THREE.PerspectiveCamera( 75, aspect, 0.1, 1000 );
+          cameraOrtho = new THREE.OrthographicCamera( - 600 * aspect, 600 * aspect, 600, - 600, 0.01, 3000 );
+          currentCamera = cameraPersp;        
+          currentCamera.position.set(  0.2, 0.2, 1.2 );
+          // scene.add(cameraPersp)
+
+
+
+
+
+         
+
+
+// -------------------------------Creating Orbit Controls to The Scene  --------------------------------------------------------------->
 
           orbit = new OrbitControls( currentCamera, renderer.domElement );
           orbit.update();
           orbit.addEventListener( 'change', render );
           
+
+// -------------------------------Adding Lights to the scene for  Object  -------------------------------------------------------------->
+
           let ambientLight = new THREE.AmbientLight(new THREE.Color('hsl(0, 0%, 100%)'), 1);
           scene.add(ambientLight);
 
@@ -170,24 +145,17 @@ function init() {
           directionalLightFront.position.set(-30, 100, -100);
           scene.add(directionalLightFront);
 
-          new RGBELoader()
-          .load(Env4K , function(texture){
-            texture.mapping = THREE.EquirectangularReflectionMapping;
-            scene.background = texture;
-            scene.enviroment = texture;
-            texture.offset.x = 0.5;
-            texture.offset.y = 0.5;
-            
-          })
+
+// ----------------------------- Addiing The 3D-Model TO the Scene GLTFLoader-------------------------------------------------------------->
 
       const gltfLoader = new GLTFLoader();
+
         gltfLoader.load(sceneView, function (object) {
             const sceneObject = object.scene;
             scene.add(sceneObject);
             objects.push(sceneObject)
-            
 
-
+            // Adding Bounding to the BOX -------------------------------------------------------------------------------------------------->
             const boundingBox = new THREE.Box3().setFromObject(sceneObject);
 
             orbit.addEventListener('change', () => {
@@ -195,19 +163,24 @@ function init() {
                   cameraPersp.position.clamp(boundingBox.min, boundingBox.max);
                 }
             });
-
             scene.add(cameraPersp); 
 
+            // Managing the Childs in the scene --------------------------------------------------------------------------------------------->
+
             sceneObject.traverse((child) => {
-         if(child.name=='Metal_pipes'){
-          child.position.z = -4.6
-         }
+              console.log(child.name)
+              if(child.name=='Metal_pipes'){
+                child.position.z = -4.6
+              }
+
+
+              // Lights_1 --------------------------------------------------> 
                 if (child.name === "Lights_1") {
                   const width = 100000;
                   const height = 10000;
                   const intensity = 1;
                   const light = new THREE.RectAreaLight(0xffffff, intensity,  width, height);
-                  // child.add(light);
+                  child.add(light);
                   const material = child.material;
                       const texture = new THREE.TextureLoader()
                           texture.load(MirrorImage , function (image) {
@@ -222,745 +195,534 @@ function init() {
                 }
 
 
-            
-         
-                if (child.name === "Frames") {
-                 
-	                    child.visible = false;
-                }
+              // Frames --------------------------------------------------> 
 
-                if (child.name === "Wood") {
-                 
-                  child.position.z = -4.6
-             
-            }
-                
-                if (child.name === "Art_Galary") {
+                  if (child.name === "Frames") {
+                    child.visible = false;
+                  }
+
+
+              // Wood  --------------------------------------------------> 
+
+                  if (child.name === "Wood") {
+                    child.position.z = -4.6
+                   }
+
+                   
+              // Art Gallery --------------------------------------------------> 
+
+                  if (child.name === "Art_Galary") {
                     const light2 = new THREE.PointLight(0xffffff, 0.6, 10);
                     child.add(light2);
-
                     const SpotLight2 = new THREE.SpotLight(0xffffff, 0.43333333);
-                    child.add(SpotLight2);
-                    
+                    child.add(SpotLight2)  
                     SpotLight2.position.set(0, 0.5, 1.500);
-
                     child.position.z = -4.5
+                  }     
+
+              // Floor   --------------------------------------------------> 
+
+                  if (child.name === "Floor") {
+
+                    child.scale.z=0.05
+                    const DLight2 = new THREE.DirectionalLight(0xffffff, 1);
+                    child.add(DLight2);
+                    DLight2.position.set(-5.20, -5.50, -3.60);
+                    const DLight3 = new THREE.DirectionalLight(0xffffff, 1);
+                    child.add(DLight3);
+                    DLight3.position.set(-1.10, -15.60, -7.60);
+                    const material = child.children[0].material;
+                    material.side = THREE.DoubleSide;
+                  }
+              });
+              ModelLoaded(true);
+            }, function (xhr) {
+              console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+              
+            }, function (error) {
+              console.log('An error happened', error);
+            });
+
+          }
 
 
-                }     
 
+          const wallGeometry = new THREE.BoxGeometry(0, 3, 28);
+          const wallMaterial = new THREE.MeshStandardMaterial();
+          const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+          scene.add(wall);
+          wall.position.set(-1.77, 0,0);
+          wall.needsUpdate = true;          
+              const textureLoader2 = new THREE.TextureLoader();
+              textureLoader2.load(wallpaper222, function onLoad(texture) {
+                var material = [
+                  new THREE.MeshBasicMaterial({ map: texture, transparent: false }),
+                  new THREE.MeshBasicMaterial({ transparent: false }),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial(),
+                ];
+                wall.material = material;
+                texture.needsUpdate = false;
+                material.map = texture;
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set( 2, 1);
+              });
 
-                if (child.name === "Floor") {
-                  //child.scale.x=2
-                  child.scale.z=0.05
-                      const DLight2 = new THREE.DirectionalLight(0xffffff, 1);
-                      child.add(DLight2);
-                      DLight2.position.set(-5.20, -5.50, -3.60);
+              const wallGeometry2 = new THREE.BoxGeometry(0, 3, 28);
+              const wallMaterial2 = new THREE.MeshStandardMaterial();
+              const wall2 = new THREE.Mesh(wallGeometry2, wallMaterial2);
+              scene.add(wall2);
+              wall2.position.set(1.77, 0,0);
+              wall2.needsUpdate = true;          
+                  const textureLoader3 = new THREE.TextureLoader();
+                  textureLoader3.load(wallpaper222, function onLoad(texture) {
+                    var material = [
+                      new THREE.MeshBasicMaterial({ transparent: false }),
+                      new THREE.MeshBasicMaterial({ map: texture, transparent: false }),
+                      new THREE.MeshBasicMaterial(),
+                      new THREE.MeshBasicMaterial(),
+                      new THREE.MeshBasicMaterial(),
+                      new THREE.MeshBasicMaterial(),
+                    ];
+                    wall2.material = material;
+                    texture.needsUpdate = false;
+                    material.map = texture;
+                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                    texture.repeat.set( 2, 1);
+                  });  
 
-                      const DLight3 = new THREE.DirectionalLight(0xffffff, 1);
-                      child.add(DLight3);
-                      DLight3.position.set(-1.10, -15.60, -7.60);
-
-
-                      const material = child.children[0].material;
-                      material.side = THREE.DoubleSide;
-                }
-          });
-
-  }, function (xhr) {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-  }, function (error) {
-    console.log('An error happened', error);
-  });
-
-}
-
-
+              const FloorGeometry = new THREE.BoxGeometry(5,0,15)
+              const Floormaterial = new THREE.MeshStandardMaterial()
+              const floorMesh = new THREE.Mesh(FloorGeometry , Floormaterial)
+              scene.add(floorMesh)
+              floorMesh.position.set(0,-1,1.5)
+              floorMesh.needsUpdate = true;
+              const textureLoader4 = new THREE.TextureLoader();
+              textureLoader4.load(floorwall3, function onLoad(texture) {
+                var material = [
+                  new THREE.MeshBasicMaterial({ transparent: false }),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial({ map: texture, transparent: false }),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial(),
+                  new THREE.MeshBasicMaterial(),
+                ];
+                floorMesh.material = material;
+                texture.needsUpdate = false;
+                material.map = texture;
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set( 2, 4);
+              });  
 // Add a double-click event listener to the renderer
-renderer.domElement.addEventListener('dblclick', onDoubleClick);
+// renderer.domElement.addEventListener('dblclick', onDoubleClick);
 
-function onDoubleClick(event) {
-  const mouse = new THREE.Vector2();
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+// function onDoubleClick(event) {
+//   const mouse = new THREE.Vector2();
+//   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  const raycaster = new THREE.Raycaster();
-  raycaster.setFromCamera(mouse, cameraPersp);
-  const intersects = raycaster.intersectObjects(scene.children, true);
+//   const raycaster = new THREE.Raycaster();
+//   raycaster.setFromCamera(mouse, cameraPersp);
+//   const intersects = raycaster.intersectObjects(scene.children, true);
   
-  if (intersects.length > 0) {
-    const target = intersects[0].point;
-    console.log(target)
-    cameraPersp.position.copy(target);
-    cameraPersp.lookAt(target);
+//   if (intersects.length > 0) {
+//     const target = intersects[0].point;
+//     console.log(target)
+//     cameraPersp.position.copy(target);
+//     cameraPersp.lookAt(target);
     
-  }
+//   }
+// }
+
+
+
+
+// ADDING NEW FRAMES TO THIS SCENE ----------------------------------------------------------------------------> *) FRAMES
+let ArrayWorks ;
+if (SelectedGallery === "artGallery-1"){
+  ArrayWorks = ImageArray
+}
+if (SelectedGallery === "artGallery-2"){
+  ArrayWorks = ImageArray2
+}
+if (SelectedGallery === "artGallery-3"){
+  ArrayWorks = ImageArray3
+}
+if (SelectedGallery === "artGallery-4"){
+  ArrayWorks = ImageArray4
 }
 
-
-
-
-// ADDING NEW FRAMES TO THIS SCENE ---> 21 FRAMES
-
-let frame  , frameFeatures
-// left Side big Images frames
-frame = new THREE.BoxGeometry(0,1,0.8);
-frameFeatures = new THREE.MeshStandardMaterial()
-
-
-const frame1 = new THREE.Mesh(frame , frameFeatures)
-console.log(frame1)
-scene.add(frame1)
-frame1.position.set(-1.760, 0.336, 7.6)
-
-const frame2 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame2)
-frame2.position.set(-1.760,0.336,6.5)
-
-
-const frame3 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame3)
-frame3.position.set(-1.760,0.336,5.4)
-
-
-
-const frame4 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame4)
-frame4.position.set(-1.76,0.336,4.3)
-
-
-
-const frame5 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame5)
-frame5.position.set(-1.76,0.336,3.2)
-
-
-
-
-const frame6 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame6)
-frame6.position.set(-1.76,0.336,2.1)
-
-
-const frame7 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame7)
-frame7.position.set(-1.760, 0.336,1.1)
-
-
-
-
-const frame8 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame8)
-frame8.position.set(-1.760,0.336,0)
-
-
-const frame9 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame9)
-frame9.position.set(-1.760,0.336,-1.1)
-
-
-
-const frame10 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame10)
-frame10.position.set(-1.75,0.336,-2.2)
-
-
-
-const frame11 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame11)
-frame11.position.set(-1.756,0.336,-3.3)
-
-
-
-
-const frame12 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame12)
-frame12.position.set(-1.76,0.336,-4.4)
-
-// left Side Big frames Closed
-
-// Left Side Images upper Stairs
-
-const frameLeftStairs = new THREE.BoxGeometry(0,0.5,0.6);
-const frameFeaturesLeftStairs = new THREE.MeshStandardMaterial()
-
-const frame13 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame13)
-frame13.position.set(-1.76,0.336,-6.1)
-
-const frame14 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame14)
-frame14.position.set(-1.76,0.336,-7)
-
-const frame15 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame15)
-frame15.position.set(-1.76,0.336,-7.9)
-
-const frame16 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame16)
-frame16.position.set(-1.76,0.336,-8.8)
-
-
-const frame17 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame17)
-frame17.position.set(-1.76,0.336,-9.7)
-
-
-const frame18 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame18)
-frame18.position.set(-1.76,0.336,-10.6)
-
-
-const frame19 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame19)
-frame19.position.set(-1.76,0.336,-11.5)
-
-const frame20 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame20)
-frame20.position.set(-1.76,0.336,-12.4)
-
-
-const frame21 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame21)
-frame21.position.set(-1.76,0.336,-13.3)
-
-const frame22 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame22)
-frame22.position.set(-1.76,0.336,-14.2)
-
-const frame23 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame23)
-frame23.position.set(-1.76,0.336,-15.1)
-
-const frame24 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame24)
-frame24.position.set(-1.76,0.336,-16)
-
-
-const frame25 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame25)
-frame25.position.set(-1.76,0.336,-16.9)
-
-
-const frame26 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame26)
-frame26.position.set(-1.76,0.336,-17.8)
-
-
-const frame27 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame27)
-frame27.position.set(-1.76,0.336,-18.6)
-
-const frame28 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame28)
-frame28.position.set(-1.76,0.336,-19.5)
-
-
-
-const frame29 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame29)
-frame29.position.set(-1.76,0.336,-19.4)
-
-const frame30 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame30)
-frame30.position.set(-1.76,0.336,-20.3)
-
-const frame31 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame31)
-frame31.position.set(-1.76,0.336,-21.2)
-
-const frame32 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame32)
-frame32.position.set(-1.76,0.336,-22.1)
-
-
-const frame33 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame33)
-frame33.position.set(-1.76,0.336,-23)
-
-
-const frame34 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame34)
-frame34.position.set(-1.76,0.336,-23.9)
-
-
-const frame35 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame35)
-frame35.position.set(-1.76,0.336,-24.8)
-
-const frame36 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame36)
-frame36.position.set(-1.76,0.336,-25.7)
-
-const frame37 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame37)
-frame37.position.set(-1.76,0.336,-26.6)
-
-
-const frame38 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame38)
-frame38.position.set(-1.76,0.336,-27.5)
-
-const frame39 = new THREE.Mesh(frameLeftStairs , frameFeaturesLeftStairs)
-scene.add(frame39)
-frame39.position.set(-1.76,0.336,-28.4)
-
-// Left Side Images upper Stairs close
-
-// Back Side Images upper Stairs
-
-const frameBackSide = new THREE.BoxGeometry(0,0.8,1);
-const frameFeaturesBackSide = new THREE.MeshStandardMaterial()
-
-const frame40 = new THREE.Mesh(frameBackSide , frameFeaturesBackSide)
-scene.add(frame40)
-frame40.position.set(-1,0.443,-29.8)
-frame40.rotation.y=Math.PI/2
-
-const frame41 = new THREE.Mesh(frameBackSide , frameFeaturesBackSide)
-scene.add(frame41)
-frame41.position.set(1,0.443,-29.8)
-frame41.rotation.y=Math.PI/2
-
-// Back Side Images upper Stairs close
-
-
-let Rframe  , RframeFeatures
-// left Side big Images frames
-Rframe = new THREE.BoxGeometry(0,1,0.8);
-RframeFeatures = new THREE.MeshStandardMaterial()
-
-
-const frame42 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame42)
-frame42.position.set(1.760, 0.336, 7.6)
-frame42.rotation.y=Math.PI
-
-
-
-
-const frame43 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame43)
-frame43.position.set(1.760,0.336,6.5)
-frame43.rotation.y=Math.PI
-
-
-
-const frame44 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame44)
-frame44.position.set(1.760,0.336,5.4)
-frame44.rotation.y=Math.PI
-
-
-
-
-const frame45 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame45)
-frame45.position.set(1.760,0.336,4.3)
-frame45.rotation.y=Math.PI
-
-
-
-
-const frame46 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame46)
-frame46.position.set(1.760,0.336,3.2)
-frame46.rotation.y=Math.PI
-
-
-
-
-
-const frame47 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame47)
-frame47.position.set(1.760,0.336,2.1)
-frame47.rotation.y=Math.PI
-
-
-
-const frame48 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame48)
-frame48.position.set(1.760, 0.336,1.1)
-frame48.rotation.y=Math.PI
-
-
-
-
-
-const frame49 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame49)
-frame49.position.set(1.760,0.336,0)
-frame49.rotation.y=Math.PI
-
-
-
-const frame50 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame50)
-frame50.position.set(1.760,0.336,-1.1)
-frame50.rotation.y=Math.PI
-
-
-
-
-const frame51 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame51)
-frame51.position.set(1.760,0.336,-2.2)
-frame51.rotation.y=Math.PI
-
-
-
-
-const frame52 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame52)
-frame52.position.set(1.760,0.336,-3.3)
-frame52.rotation.y=Math.PI
-
-
-
-
-
-const frame53 = new THREE.Mesh(frame , frameFeatures)
-scene.add(frame53)
-frame53.position.set(1.76,0.336,-4.4)
-frame53.rotation.y=Math.PI
-
-
-// Right Side Big frames Closed
-
-// Right Side Images upper Stairs
-
-const frameRightStairs = new THREE.BoxGeometry(0,0.5,0.6);
-const frameFeaturesRightStairs = new THREE.MeshStandardMaterial()
-
-const frame54 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame54)
-frame54.position.set(1.76,0.336,-6.1)
-frame54.rotation.y=Math.PI
-
-
-const frame55 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame55)
-frame55.position.set(1.76,0.336,-7)
-frame55.rotation.y=Math.PI
-
-
-const frame56 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame56)
-frame56.position.set(1.76,0.336,-7.9)
-frame56.rotation.y=Math.PI
-
-
-const frame57 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame57)
-frame57.position.set(1.76,0.336,-8.8)
-frame57.rotation.y=Math.PI
-
-
-
-const frame58 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame58)
-frame58.position.set(1.76,0.336,-9.7)
-frame58.rotation.y=Math.PI
-
-
-
-const frame59 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame59)
-frame59.position.set(1.76,0.336,-10.6)
-frame59.rotation.y=Math.PI
-
-
-
-const frame60 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame60)
-frame60.position.set(1.76,0.336,-11.5)
-frame60.rotation.y=Math.PI
-
-
-const frame61 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame61)
-frame61.position.set(1.76,0.336,-12.4)
-frame61.rotation.y=Math.PI
-
-
-
-const frame62 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame62)
-frame62.position.set(1.76,0.336,-13.3)
-frame62.rotation.y=Math.PI
-
-
-const frame63 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame63)
-frame63.position.set(1.76,0.336,-14.2)
-frame63.rotation.y=Math.PI
-
-
-const frame64 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame64)
-frame64.position.set(1.76,0.336,-15.1)
-frame64.rotation.y=Math.PI
-
-
-const frame65 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame65)
-frame65.position.set(1.76,0.336,-16)
-frame65.rotation.y=Math.PI
-
-
-
-const frame66 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame66)
-frame66.position.set(1.76,0.336,-16.9)
-frame66.rotation.y=Math.PI
-
-
-
-const frame67 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame67)
-frame67.position.set(1.76,0.336,-17.8)
-frame67.rotation.y=Math.PI
-
-
-
-const frame68 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame68)
-frame68.position.set(1.76,0.336,-18.6)
-frame68.rotation.y=Math.PI
-
-
-const frame69 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame69)
-frame69.position.set(1.76,0.336,-19.5)
-frame69.rotation.y=Math.PI
-
-
-
-
-const frame70 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame70)
-frame70.position.set(1.76,0.336,-19.4)
-frame70.rotation.y=Math.PI
-
-
-const frame71 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame71)
-frame71.position.set(1.76,0.336,-20.3)
-frame71.rotation.y=Math.PI
-
-
-const frame72 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame72)
-frame72.position.set(1.76,0.336,-21.2)
-frame72.rotation.y=Math.PI
-
-
-const frame73 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame73)
-frame73.position.set(1.76,0.336,-22.1)
-frame73.rotation.y=Math.PI
-
-
-
-const frame74 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame74)
-frame74.position.set(1.76,0.336,-23)
-frame74.rotation.y=Math.PI
-
-
-
-const frame75 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame75)
-frame75.position.set(1.76,0.336,-23.9)
-frame75.rotation.y=Math.PI
-
-
-
-const frame76 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame76)
-frame76.position.set(1.76,0.336,-24.8)
-frame76.rotation.y=Math.PI
-
-
-const frame77 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame77)
-frame77.position.set(1.76,0.336,-25.7)
-frame77.rotation.y=Math.PI
-
-
-const frame78 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame78)
-frame78.position.set(1.76,0.336,-26.6)
-frame78.rotation.y=Math.PI
-
-
-
-const frame79 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame79)
-frame79.position.set(1.76,0.336,-27.5)
-frame79.rotation.y=Math.PI
-
-
-const frame80 = new THREE.Mesh(frameRightStairs , frameFeaturesRightStairs)
-scene.add(frame80)
-frame80.position.set(1.76,0.336,-28.4)
-frame80.rotation.y=Math.PI
-
-
-const FramesArray=[frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10,frame11,frame12,frame13,frame14,frame15,frame16,frame17,frame18,frame19,frame20,frame21,frame22,frame23,frame24,frame25,frame26,frame27,frame28,frame29,frame30,frame31,frame32,frame33,frame34,frame35,frame36,frame37,frame38,frame39,frame40,frame41,frame42,frame43,frame44,frame45,frame46,frame47,frame48,frame49,frame50,frame51,frame52,frame53,frame54,frame55,frame56,frame57,frame58,frame59,frame60,frame61,frame62,frame63,frame64,frame65,frame66,frame67,frame68,frame69,frame70,frame71,frame72,frame73,frame74,frame75,frame76,frame77,frame78,frame79,frame80]
-
+let position_z2  = 7.6;
+let position_z  = 7.6;
+let position_x  = -1;
+var geome2 = new THREE.BoxGeometry(0.01,0.8,0.7);
+var mater2 = new THREE.MeshBasicMaterial({transparent : false , color : 0x3d3d3d});
+var geome = new THREE.BoxGeometry(0.01, 1, 0.9);
+var mater = new THREE.MeshPhongMaterial({color: 0xffffff,
+    shininess:80,
+    metal : true,
+    wrapAround:true,
+    metalness: 0,
+    roughness: 1,
+    thickness : 0,
+    clearcoat: 1,
+    transparent: true,
+    emissive : 0xffe87c,
+    emissiveIntensity : 0,
+    lightMapIntensity : 1,
+    transmission: .95,
+    opacity: 0.4,
+    reflectivity: 1
+});
 const textureLoader = new THREE.TextureLoader();
+for (let i=1;i<81;i++){
+    console.log("Images " , ArrayWorks[i])
+    const texture = textureLoader.load(ArrayWorks[i]);
+    const material2 = new THREE.MeshBasicMaterial({ map: texture });
+
+    if(i<40){
+    var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
+    var material = new THREE.MeshBasicMaterial({
+        transparent : false,
+        color: 0xffffff,
+        metalness: 1,    
+        roughness: 0,
+        opacity : 1
+    })
+    var cube= new THREE.Mesh(geometry , material)
+    scene.add(cube);
+    cube.position.set(-1.760,0.336,position_z);
+    material.needsUpdate= true
+    // adding for the image part 
+    var ImageMesh = new THREE.Mesh(geome2 , mater2);
+    cube.add(ImageMesh);
+    ImageMesh.needsUpdate= true
+    ImageMesh.position.set(0.03,0, 0);
 
 
-for (let i = 0; i < FramesArray.length; i++) {
-  const frame = FramesArray[i];
-  const image = ImageArray[i];
-  const imageName = image; 
-
-  const texture = textureLoader.load(image);
-  const material = new THREE.MeshBasicMaterial({ map: texture });
-
-  frame.material = material;
-
-
-  // buttonGroup.visible = false;
-  const raycaster = new THREE.Raycaster();
-renderer.domElement.addEventListener("mousemove",onmousemove);
-function onmousemove(event){
-  const mouse = new THREE.Vector2();
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  raycaster.setFromCamera(mouse , cameraPersp);
-
-  const intersects = raycaster.intersectObject(frame, true);
-  for (let i = 0; i < intersects.length; i++) {
-  // Create the button and information icon
-    // buttonGroup = new THREE.Group();
-    // frame.add(buttonGroup);
-    // const IconTexture = textureLoader.load(InformationButton)
-    // const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-    // const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
-    // iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
-  
-    // console.log("Heer")
-    // buttonGroup.add(iconMesh);
-    // buttonGroup.position.set(0.01, 0, 0.3);
-    // buttonGroup.rotation.y=Math.PI/2
+    ImageMesh.material = material2;
+    // adding second frame  (mirror frame)...
+    var mesh = new THREE.Mesh(geome , mater);
+    cube.add(mesh);
+    mater.needsUpdate = true
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    mesh.position.set(0.04,0, 0);
+    position_z=position_z-1.1
   }
+  if (i==40 || i==41){
+    var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
+    var material = new THREE.MeshBasicMaterial({
+        transparent : false,
+        color: 0xffffff,
+        metalness: 1,    
+        roughness: 0,
+        opacity : 1
+    })
+    var cube= new THREE.Mesh(geometry , material)
+    scene.add(cube);
+    cube.position.set(position_x,0.443,-29.8);
+    material.needsUpdate= true
+    cube.rotation.y=Math.PI/2
+    // adding for the image part 
+    var ImageMesh = new THREE.Mesh(geome2 , mater2);
+    cube.add(ImageMesh);
+    ImageMesh.needsUpdate= true
+    ImageMesh.position.set(0.03,0, 0);
+
+    ImageMesh.material = material2;
+    // adding second frame  (mirror frame)...
+    var mesh = new THREE.Mesh(geome , mater);
+    cube.add(mesh);
+    mater.needsUpdate = true
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    mesh.position.set(0.04,0, 0);
+    position_x=position_x+2
+  }
+    if (i>41){
+      var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
+      var material = new THREE.MeshBasicMaterial({
+          transparent : false,
+          color: 0xffffff,
+          metalness: 1,    
+          roughness: 0,
+          opacity : 1
+      })
+      var cube= new THREE.Mesh(geometry , material)
+      scene.add(cube);
+      cube.position.set(1.760,0.336,position_z2);
+      material.needsUpdate= true
+      cube.rotation.y=Math.PI
+        // adding for the image part 
+      var ImageMesh = new THREE.Mesh(geome2 , mater2);
+      cube.add(ImageMesh);
+      ImageMesh.needsUpdate= true
+      ImageMesh.position.set(0.03,0, 0);
+
+
+      ImageMesh.material = material2;
+      // adding second frame  (mirror frame)...
+      var mesh = new THREE.Mesh(geome , mater);
+      cube.add(mesh);
+      mater.needsUpdate = true
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.position.set(0.04,0, 0);
+      position_z2=position_z2-1.1
+    }
 }
-}
 
 
 
-// POINTER CONTROLS --------------------------------
-var moveForward = false;
-var moveBackward = false;
-var moveLeft = false;
-var moveRight = false;
-var canJump = false;
 
+// ADding Images for The Frames ------------------------------------------------------------------------------------------------------------------------>
+
+// const textureLoader = new THREE.TextureLoader();
+// if (SelectedGallery === 'artGallery-1'){
+
+//   for (let i = 0; i < FramesArray.length; i++) {
+//     const frame = FramesArray[i];
+//     const image = ImageArray[i];
+//     const imageName = image; 
+
+//     const texture = textureLoader.load(image);
+//     const material = new THREE.MeshBasicMaterial({ map: texture });
+
+//     frame.material = material;
+
+
+//     const raycaster = new THREE.Raycaster();
+//     // renderer.domElement.addEventListener("mousemove",onmousemove);
+//     // function onmousemove(event){
+//     //   const mouse = new THREE.Vector2();
+//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+//     //   raycaster.setFromCamera(mouse , cameraPersp);
+
+//     //   const intersects = raycaster.intersectObject(frame, true);
+//     //   for (let i = 0; i < intersects.length; i++) {
+//     //   // Create the button and information icon
+//     //     buttonGroup = new THREE.Group();
+//     //     frame.add(buttonGroup);
+//     //     const IconTexture = textureLoader.load(InformationButton)
+//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
+//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
+      
+//     //     console.log("Heer")
+//     //     buttonGroup.add(iconMesh);
+//     //     buttonGroup.position.set(0.01, 0, 0.3);
+//     //     buttonGroup.rotation.y=Math.PI/2
+//     //   }
+//     // }
+//   }
+// }
+// if (SelectedGallery === 'artGallery-2'){
+
+//   for (let i = 0; i < FramesArray.length; i++) {
+//     const frame = FramesArray[i];
+//     const image = ImageArray2[i];
+//     const imageName = image; 
+
+//     const texture = textureLoader.load(image);
+//     const material = new THREE.MeshBasicMaterial({ map: texture });
+
+//     frame.material = material;
+
+
+//     const raycaster = new THREE.Raycaster();
+//     // renderer.domElement.addEventListener("mousemove",onmousemove);
+//     // function onmousemove(event){
+//     //   const mouse = new THREE.Vector2();
+//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+//     //   raycaster.setFromCamera(mouse , cameraPersp);
+
+//     //   const intersects = raycaster.intersectObject(frame, true);
+//     //   for (let i = 0; i < intersects.length; i++) {
+//     //   // Create the button and information icon
+//     //     buttonGroup = new THREE.Group();
+//     //     frame.add(buttonGroup);
+//     //     const IconTexture = textureLoader.load(InformationButton)
+//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
+//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
+      
+//     //     console.log("Heer")
+//     //     buttonGroup.add(iconMesh);
+//     //     buttonGroup.position.set(0.01, 0, 0.3);
+//     //     buttonGroup.rotation.y=Math.PI/2
+//     //   }
+//     // }
+//   }
+// }
+// if (SelectedGallery === 'artGallery-3'){
+
+//   for (let i = 0; i < FramesArray.length; i++) {
+//     const frame = FramesArray[i];
+//     const image = ImageArray3[i];
+//     const imageName = image; 
+
+//     const texture = textureLoader.load(image);
+//     const material = new THREE.MeshBasicMaterial({ map: texture });
+
+//     frame.material = material;
+
+
+//     const raycaster = new THREE.Raycaster();
+//     // renderer.domElement.addEventListener("mousemove",onmousemove);
+//     // function onmousemove(event){
+//     //   const mouse = new THREE.Vector2();
+//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+//     //   raycaster.setFromCamera(mouse , cameraPersp);
+
+//     //   const intersects = raycaster.intersectObject(frame, true);
+//     //   for (let i = 0; i < intersects.length; i++) {
+//     //   // Create the button and information icon
+//     //     buttonGroup = new THREE.Group();
+//     //     frame.add(buttonGroup);
+//     //     const IconTexture = textureLoader.load(InformationButton)
+//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
+//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
+      
+//     //     console.log("Heer")
+//     //     buttonGroup.add(iconMesh);
+//     //     buttonGroup.position.set(0.01, 0, 0.3);
+//     //     buttonGroup.rotation.y=Math.PI/2
+//     //   }
+//     // }
+//   }
+// }
+// if (SelectedGallery === 'artGallery-4'){
+
+//   for (let i = 0; i < FramesArray.length; i++) {
+//     const frame = FramesArray[i];
+//     const image = ImageArray4[i];
+//     const imageName = image; 
+
+//     const texture = textureLoader.load(image);
+//     const material = new THREE.MeshBasicMaterial({ map: texture });
+
+//     frame.material = material;
+
+
+//     const raycaster = new THREE.Raycaster();
+//     // renderer.domElement.addEventListener("mousemove",onmousemove);
+//     // function onmousemove(event){
+//     //   const mouse = new THREE.Vector2();
+//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+//     //   raycaster.setFromCamera(mouse , cameraPersp);
+
+//     //   const intersects = raycaster.intersectObject(frame, true);
+//     //   for (let i = 0; i < intersects.length; i++) {
+//     //   // Create the button and information icon
+//     //     buttonGroup = new THREE.Group();
+//     //     frame.add(buttonGroup);
+//     //     const IconTexture = textureLoader.load(InformationButton)
+//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
+//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
+      
+//     //     console.log("Heer")
+//     //     buttonGroup.add(iconMesh);
+//     //     buttonGroup.position.set(0.01, 0, 0.3);
+//     //     buttonGroup.rotation.y=Math.PI/2
+//     //   }
+//     // }
+//   }
+// }
+
+// // POINTER CONTROLS ---------------------------------------------------------------------------------->
+let moveForward = false;
+let moveBackward = false;
+let moveLeft = false;
+let moveRight = false;
+let canJump = false;
+
+let prevTime = performance.now();
 const velocity = new THREE.Vector3();
+const direction = new THREE.Vector3();
 const vertex = new THREE.Vector3();
-const color = new THREE.Color();
 
-const PointerControls = new PointerLockControls( cameraPersp,renderer.domElement );
+const controlsPointer = new PointerLockControls(cameraPersp , renderer.domElement)
+const blocker = document.getElementById("blocker");
+const instructions = document.getElementById("instructions");
 
-const blocker = document.getElementById( 'blocker' );
-const instructions = document.getElementById( 'instructions' );
-
-instructions.addEventListener( 'click', function () {
-
-  PointerControls.lock();
-
-} );
-
-PointerControls.addEventListener( 'lock', function () {
-
-  instructions.style.display = 'none';
+instructions.addEventListener("click" , function(){
+  controlsPointer.lock();
+  console.log(controlsPointer.lock());
+  // updatePointerControls()
+})
+controlsPointer.addEventListener("lock" , function(){
   blocker.style.display = 'none';
-
-} );
-
-PointerControls.addEventListener( 'unlock', function () {
-
+  instructions.style.display = 'none';
+})
+controlsPointer.addEventListener("unlock" , function(){
   blocker.style.display = 'block';
   instructions.style.display = '';
+})
+scene.add(controlsPointer.getObject())
 
-} );
-
-scene.add( PointerControls.getObject() );
-
-const onKeyDown = function ( event ) {
-
-  switch ( event.code ) {
-
+const onKeyDown = function(event){
+  switch(event.code){
     case 'ArrowUp':
     case 'KeyW':
       moveForward = true;
       break;
-
-    case 'ArrowLeft':
-    case 'KeyA':
-      moveLeft = true;
-      break;
-
     case 'ArrowDown':
     case 'KeyS':
       moveBackward = true;
       break;
-
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = true;
+      break;
     case 'ArrowRight':
     case 'KeyD':
       moveRight = true;
       break;
-
-    case 'Space':
-      if ( canJump === true ) velocity.y += 350;
-      canJump = false;
-      break;
-
   }
-
-};
-
-const onKeyUp = function ( event ) {
-
-  switch ( event.code ) {
-
+}
+const onKeyUp = function(event){
+  switch(event.code){
     case 'ArrowUp':
     case 'KeyW':
+      console.log('ArrowUp', event.code)
       moveForward = false;
       break;
-
-    case 'ArrowLeft':
-    case 'KeyA':
-      moveLeft = false;
-      break;
-
     case 'ArrowDown':
     case 'KeyS':
       moveBackward = false;
       break;
-
+    case 'ArrowLeft':
+    case 'KeyA':
+      moveLeft = false;
+      break;
     case 'ArrowRight':
     case 'KeyD':
       moveRight = false;
       break;
-
   }
-
-};
-
+}
 document.addEventListener( 'keydown', onKeyDown );
 document.addEventListener( 'keyup', onKeyUp );
-const raycaster= new THREE.Raycaster();
-let prevTime = performance.now();
-const direction = new THREE.Vector3();
 const time = performance.now();
-if ( PointerControls.isLocked === true ) {
-
-  raycaster.ray.origin.copy( PointerControls.getObject().position );
+const raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+console.log(controlsPointer.isLocked === true)
+function updatePointerControls (){
+if (controlsPointer.isLocked === false){
+  console.log("HERE UPDATED ")
+  raycaster.ray.origin.copy( controlsPointer.getObject().position );
   raycaster.ray.origin.y -= 10;
 
   const intersections = raycaster.intersectObjects( objects, false );
@@ -988,22 +750,22 @@ if ( PointerControls.isLocked === true ) {
 
   }
 
-  PointerControls.moveRight( - velocity.x * delta );
-  PointerControls.moveForward( - velocity.z * delta );
+  controlsPointer.moveRight( - velocity.x * delta );
+  controlsPointer.moveForward( - velocity.z * delta );
 
-  PointerControls.getObject().position.y += ( velocity.y * delta ); // new behavior
+  controlsPointer.getObject().position.y += ( velocity.y * delta ); // new behavior
 
-  if ( PointerControls.getObject().position.y < 10 ) {
+  if ( controlsPointer.getObject().position.y < 10 ) {
 
     velocity.y = 0;
-    PointerControls.getObject().position.y = 10;
+    controlsPointer.getObject().position.y = 10;
 
     canJump = true;
 
   }
 
 }
-
+}
 
     function onWindowResize() {
 
@@ -1022,26 +784,20 @@ if ( PointerControls.isLocked === true ) {
     
     }
 
-
-    function render() {
-      const delta = clock.getDelta();
-      firstPerson.update(delta)
-      // setupKeyControls()
-      renderer.render(scene, currentCamera);
-      // Flycontrols.update(0.01);
+    if(loadedModel){
+      render();
     }
-    
-}
-    setTimeout(Gallery , 1000)
+    function render() {
+        requestAnimationFrame(render) 
+        // updatePointerControls()
+        renderer.render(scene, currentCamera);
+      }
+      
+  }
+Gallery()
+}, [RenderRer]);
 
-        },);
-        const render = () => {
-          // Return your JSX code here or null
-          return null;
-        };
-        
-        return render(); // Call the render function
-        
-}
+return null;
+};
 
 export default ArtWork;

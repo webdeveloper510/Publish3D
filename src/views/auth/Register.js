@@ -27,9 +27,9 @@ export default function Register() {
     axios.post(API.BASE_URL+"api/register", item).then(
       (res) => {
         // this only runs on success
-        // console.log("RESPONSE FROM POST", res.data);
+         console.log("RESPONSE FROM POST", res.data);
         toast.success("Register success Please verify your email ");
-        window.location.href = "/admin/dashboard"; // Redirect to dashboard page
+        // window.location.href = "/admin/dashboard"; // Redirect to dashboard page
       },
       (err) => {
         // console.log("Error While Posting Data", err);

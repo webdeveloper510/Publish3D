@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/src/assets/GLTF/Sub01.glb
 # testing
 /coverage
 
