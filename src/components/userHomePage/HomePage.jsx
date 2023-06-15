@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import AboutPage from "./AboutPage";
 import ResourcesPage from "./ResourcesPage";
 import Footer from "components/Footers/Footer";
+import ContactUs from "./ContactUs";
 
 const HomePage = () => {
   const [SelectedGallery , selectAGallery] = useState(null)
@@ -38,6 +39,14 @@ const HomePage = () => {
       resourcesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+    // function to scroll to contact us section
+    const handleScrollToContactUs = () => {
+      const contactSection = document.getElementById('contactUsSection');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
 
 
 
@@ -72,13 +81,15 @@ const HomePage = () => {
           <div>
             {token ? (
               <>
-              {/* <Link to='/about'> */}
+           
                 <button onClick={handleScrollToAbout} type="button" class="btn btn-danger me-5">
                   About Us
                 </button>
-              {/* </Link> */}
                 <button type="button" class="btn btn-danger me-5" onClick={handleScrollToResources}>
-                  Resources
+                  Info
+                </button>
+                <button type="button" class="btn btn-danger me-5" onClick={handleScrollToContactUs}>
+                  Contact Us 
                 </button>
                 <button type="button" class="btn btn-danger me-5" onClick={handleLogout}>
                   Logout
@@ -123,6 +134,9 @@ const HomePage = () => {
     </div>
     <div id='resourcesSection' className="mt-4">
       <ResourcesPage />
+    </div>
+    <div id="contactUsSection">
+      <ContactUs />
     </div>
     <Footer />
     </div>
