@@ -39,7 +39,10 @@ import wallTexture6 from '../../assets/images/walltexture6.jpeg'
 import wallTexture7 from '../../assets/images/walltexture7.jpg'
 import wallTexture8 from '../../assets/images/walltexture8.jpg'
 import wallTexture9 from '../../assets/images/walltexture9.jpg'
-import wallpaper222 from '../../assets/images/wallpaper222.jpg'
+import artGalleryTexture1 from '../../assets/images/wallpaper222.jpg'
+import artGalleryTexture2 from '../../assets/Pictures/artGallery2.png'
+import artGalleryTexture3 from '../../assets/Pictures/artGallery3.png'
+import artGalleryTexture4 from '../../assets/Pictures/artGallery4.png'
 
 
 // Images ARTGALLERY-3
@@ -65,11 +68,11 @@ import bike6 from "../../assets/images/bike6.jpeg"
 import bike7 from "../../assets/images/bike7.jpeg"
 import bike8 from "../../assets/images/bike8.jpeg"
 
-import floorwall from "../../assets/images/dark.png"
+
 import floorwall3 from "../../assets/images/FloorTest3.jpg"
 import InformationButton from "../../assets/Pictures/info.png"
 import { RGBELoader } from "../../../node_modules/three/examples/jsm/loaders/RGBELoader"
-// import { PointerLockControls } from "three-stdlib";
+
 
 let RenderRer = true;
 const ArtWork = ()=>{
@@ -117,12 +120,6 @@ const ArtWork = ()=>{
           currentCamera = cameraPersp;        
           currentCamera.position.set(  0.2, 0.2, 1.2 );
           // scene.add(cameraPersp)
-
-
-
-
-
-         
 
 
 // -------------------------------Creating Orbit Controls to The Scene  --------------------------------------------------------------->
@@ -246,7 +243,19 @@ const ArtWork = ()=>{
           }
 
 
-
+          let ImageTextureForWall ;
+          if (SelectedGallery === "artGallery-1"){
+            ImageTextureForWall = artGalleryTexture1
+          }
+          if (SelectedGallery === "artGallery-2"){
+            ImageTextureForWall = artGalleryTexture2
+          }
+          if (SelectedGallery === "artGallery-3"){
+            ImageTextureForWall = artGalleryTexture3
+          }
+          if (SelectedGallery === "artGallery-4"){
+            ImageTextureForWall = artGalleryTexture4
+          }
           const wallGeometry = new THREE.BoxGeometry(0, 3, 28);
           const wallMaterial = new THREE.MeshStandardMaterial();
           const wall = new THREE.Mesh(wallGeometry, wallMaterial);
@@ -254,7 +263,7 @@ const ArtWork = ()=>{
           wall.position.set(-1.77, 0,0);
           wall.needsUpdate = true;          
               const textureLoader2 = new THREE.TextureLoader();
-              textureLoader2.load(wallpaper222, function onLoad(texture) {
+              textureLoader2.load(ImageTextureForWall, function onLoad(texture) {
                 var material = [
                   new THREE.MeshBasicMaterial({ map: texture, transparent: false }),
                   new THREE.MeshBasicMaterial({ transparent: false }),
@@ -277,7 +286,7 @@ const ArtWork = ()=>{
               wall2.position.set(1.77, 0,0);
               wall2.needsUpdate = true;          
                   const textureLoader3 = new THREE.TextureLoader();
-                  textureLoader3.load(wallpaper222, function onLoad(texture) {
+                  textureLoader3.load(ImageTextureForWall, function onLoad(texture) {
                     var material = [
                       new THREE.MeshBasicMaterial({ transparent: false }),
                       new THREE.MeshBasicMaterial({ map: texture, transparent: false }),
@@ -292,6 +301,9 @@ const ArtWork = ()=>{
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                     texture.repeat.set( 2, 1);
                   });  
+
+
+
 
               const FloorGeometry = new THREE.BoxGeometry(5,0,15)
               const Floormaterial = new THREE.MeshStandardMaterial()
@@ -315,6 +327,9 @@ const ArtWork = ()=>{
                 texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                 texture.repeat.set( 2, 4);
               });  
+
+
+
 // Add a double-click event listener to the renderer
 // renderer.domElement.addEventListener('dblclick', onDoubleClick);
 
@@ -376,13 +391,52 @@ var mater = new THREE.MeshPhongMaterial({color: 0xffffff,
     opacity: 0.4,
     reflectivity: 1
 });
-const textureLoader = new THREE.TextureLoader();
+
 for (let i=1;i<81;i++){
     console.log("Images " , ArrayWorks[i])
+    const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(ArrayWorks[i]);
     const material2 = new THREE.MeshBasicMaterial({ map: texture });
+    // var planeBlack = new THREE.Mesh(informationTextureGeometry , informationTexturematerial)
+    // var planeWhite = new THREE.Mesh(informationTextureGeometry2 , informationTexturematerial2)
+    // var textElement = document.createElement('div');
+    // textElement.innerHTML = `<h3>Additional info here ${i}</h3>
+    //                          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora similique quia corporis libero. In dolor qui repudiandae ullam! Corporis minus veritatis consequuntur natus. Neque, quidem?</p>`;
+    // var linkElement = document.createElement('a');
+    // linkElement.href = `http://127.0.0.1:3000/${ArrayWorks[i]}`;
+    // linkElement.innerText = 'Click More';
+    
+    // // Create a canvas to render the HTML elements
+    // var canvas = document.createElement('canvas');
+    // canvas.width = 512;
+    // canvas.height = 512;
+    // var context = canvas.getContext('2d');
+    // context.fillStyle = '#ffffff';
+    // context.fillRect(0, 0, canvas.width, canvas.height);
+    // context.font = '20px Arial';
+    // context.fillStyle = '#000000';
+    // context.fillText(textElement.innerHTML, 10, 50);
+    // context.fillStyle = '#0000ff';
+    // context.fillRect(10, 60, 100, 40);
+    // context.fillStyle = '#ffffff';
+    // context.font = '16px Arial';
+    // context.fillText('Click More', 20, 85);
+    
+    // // Convert the canvas into a texture
+    // var texturePlane = new THREE.Texture(canvas);
+    // texture.needsUpdate = true;
+    // var informationTextureGeometry = new THREE.BoxGeometry(.03, 0.3 , 0.9);
+    // var informationTexturematerial = new THREE.MeshBasicMaterial({color:0x000000})
+    // var informationTextureGeometry2 = new THREE.BoxGeometry(.01, 0.25 , 0.82);
+    // var informationTexturematerial2 = new THREE.MeshBasicMaterial({color:0xffffff})
 
+
+    // scene.add(planeBlack)
+    // planeBlack.position.set(-1.760,1,position_z) 
+    // planeBlack.add(planeWhite)
+    // planeWhite.position.set(0.03,0, 0)
     if(i<40){
+
     var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
     var material = new THREE.MeshBasicMaterial({
         transparent : false,
@@ -400,8 +454,6 @@ for (let i=1;i<81;i++){
     cube.add(ImageMesh);
     ImageMesh.needsUpdate= true
     ImageMesh.position.set(0.03,0, 0);
-
-
     ImageMesh.material = material2;
     // adding second frame  (mirror frame)...
     var mesh = new THREE.Mesh(geome , mater);
@@ -411,8 +463,16 @@ for (let i=1;i<81;i++){
     mesh.receiveShadow = true;
     mesh.position.set(0.04,0, 0);
     position_z=position_z-1.1
+    mesh.userData.name = ArrayWorks[i]
+
   }
   if (i==40 || i==41){
+
+    // scene.add(planeBlack)
+    // planeBlack.rotation.y=Math.PI/2
+    // planeBlack.position.set(position_x,1,-29.8) 
+    // planeBlack.add(planeWhite)
+    // planeWhite.position.set(0.03,0, 0)
     var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
     var material = new THREE.MeshBasicMaterial({
         transparent : false,
@@ -431,7 +491,6 @@ for (let i=1;i<81;i++){
     cube.add(ImageMesh);
     ImageMesh.needsUpdate= true
     ImageMesh.position.set(0.03,0, 0);
-
     ImageMesh.material = material2;
     // adding second frame  (mirror frame)...
     var mesh = new THREE.Mesh(geome , mater);
@@ -441,8 +500,15 @@ for (let i=1;i<81;i++){
     mesh.receiveShadow = true;
     mesh.position.set(0.04,0, 0);
     position_x=position_x+2
+    mesh.userData.name = ArrayWorks[i]
+
   }
     if (i>41){
+      // scene.add(planeBlack)
+      // planeBlack.rotation.y=Math.PI
+      // planeBlack.position.set(1.760,1,position_z2) 
+      // planeBlack.add(planeWhite)
+      // planeWhite.position.set(0.03,0, 0)
       var geometry = new THREE.BoxGeometry(0.03, 1, 0.9) 
       var material = new THREE.MeshBasicMaterial({
           transparent : false,
@@ -461,8 +527,6 @@ for (let i=1;i<81;i++){
       cube.add(ImageMesh);
       ImageMesh.needsUpdate= true
       ImageMesh.position.set(0.03,0, 0);
-
-
       ImageMesh.material = material2;
       // adding second frame  (mirror frame)...
       var mesh = new THREE.Mesh(geome , mater);
@@ -472,177 +536,12 @@ for (let i=1;i<81;i++){
       mesh.receiveShadow = true;
       mesh.position.set(0.04,0, 0);
       position_z2=position_z2-1.1
+      mesh.userData.name = ArrayWorks[i]
     }
 }
 
 
-
-
-// ADding Images for The Frames ------------------------------------------------------------------------------------------------------------------------>
-
-// const textureLoader = new THREE.TextureLoader();
-// if (SelectedGallery === 'artGallery-1'){
-
-//   for (let i = 0; i < FramesArray.length; i++) {
-//     const frame = FramesArray[i];
-//     const image = ImageArray[i];
-//     const imageName = image; 
-
-//     const texture = textureLoader.load(image);
-//     const material = new THREE.MeshBasicMaterial({ map: texture });
-
-//     frame.material = material;
-
-
-//     const raycaster = new THREE.Raycaster();
-//     // renderer.domElement.addEventListener("mousemove",onmousemove);
-//     // function onmousemove(event){
-//     //   const mouse = new THREE.Vector2();
-//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//     //   raycaster.setFromCamera(mouse , cameraPersp);
-
-//     //   const intersects = raycaster.intersectObject(frame, true);
-//     //   for (let i = 0; i < intersects.length; i++) {
-//     //   // Create the button and information icon
-//     //     buttonGroup = new THREE.Group();
-//     //     frame.add(buttonGroup);
-//     //     const IconTexture = textureLoader.load(InformationButton)
-//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
-//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
-      
-//     //     console.log("Heer")
-//     //     buttonGroup.add(iconMesh);
-//     //     buttonGroup.position.set(0.01, 0, 0.3);
-//     //     buttonGroup.rotation.y=Math.PI/2
-//     //   }
-//     // }
-//   }
-// }
-// if (SelectedGallery === 'artGallery-2'){
-
-//   for (let i = 0; i < FramesArray.length; i++) {
-//     const frame = FramesArray[i];
-//     const image = ImageArray2[i];
-//     const imageName = image; 
-
-//     const texture = textureLoader.load(image);
-//     const material = new THREE.MeshBasicMaterial({ map: texture });
-
-//     frame.material = material;
-
-
-//     const raycaster = new THREE.Raycaster();
-//     // renderer.domElement.addEventListener("mousemove",onmousemove);
-//     // function onmousemove(event){
-//     //   const mouse = new THREE.Vector2();
-//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//     //   raycaster.setFromCamera(mouse , cameraPersp);
-
-//     //   const intersects = raycaster.intersectObject(frame, true);
-//     //   for (let i = 0; i < intersects.length; i++) {
-//     //   // Create the button and information icon
-//     //     buttonGroup = new THREE.Group();
-//     //     frame.add(buttonGroup);
-//     //     const IconTexture = textureLoader.load(InformationButton)
-//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
-//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
-      
-//     //     console.log("Heer")
-//     //     buttonGroup.add(iconMesh);
-//     //     buttonGroup.position.set(0.01, 0, 0.3);
-//     //     buttonGroup.rotation.y=Math.PI/2
-//     //   }
-//     // }
-//   }
-// }
-// if (SelectedGallery === 'artGallery-3'){
-
-//   for (let i = 0; i < FramesArray.length; i++) {
-//     const frame = FramesArray[i];
-//     const image = ImageArray3[i];
-//     const imageName = image; 
-
-//     const texture = textureLoader.load(image);
-//     const material = new THREE.MeshBasicMaterial({ map: texture });
-
-//     frame.material = material;
-
-
-//     const raycaster = new THREE.Raycaster();
-//     // renderer.domElement.addEventListener("mousemove",onmousemove);
-//     // function onmousemove(event){
-//     //   const mouse = new THREE.Vector2();
-//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//     //   raycaster.setFromCamera(mouse , cameraPersp);
-
-//     //   const intersects = raycaster.intersectObject(frame, true);
-//     //   for (let i = 0; i < intersects.length; i++) {
-//     //   // Create the button and information icon
-//     //     buttonGroup = new THREE.Group();
-//     //     frame.add(buttonGroup);
-//     //     const IconTexture = textureLoader.load(InformationButton)
-//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
-//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
-      
-//     //     console.log("Heer")
-//     //     buttonGroup.add(iconMesh);
-//     //     buttonGroup.position.set(0.01, 0, 0.3);
-//     //     buttonGroup.rotation.y=Math.PI/2
-//     //   }
-//     // }
-//   }
-// }
-// if (SelectedGallery === 'artGallery-4'){
-
-//   for (let i = 0; i < FramesArray.length; i++) {
-//     const frame = FramesArray[i];
-//     const image = ImageArray4[i];
-//     const imageName = image; 
-
-//     const texture = textureLoader.load(image);
-//     const material = new THREE.MeshBasicMaterial({ map: texture });
-
-//     frame.material = material;
-
-
-//     const raycaster = new THREE.Raycaster();
-//     // renderer.domElement.addEventListener("mousemove",onmousemove);
-//     // function onmousemove(event){
-//     //   const mouse = new THREE.Vector2();
-//     //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//     //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//     //   raycaster.setFromCamera(mouse , cameraPersp);
-
-//     //   const intersects = raycaster.intersectObject(frame, true);
-//     //   for (let i = 0; i < intersects.length; i++) {
-//     //   // Create the button and information icon
-//     //     buttonGroup = new THREE.Group();
-//     //     frame.add(buttonGroup);
-//     //     const IconTexture = textureLoader.load(InformationButton)
-//     //     const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-//     //     const iconMaterial = new THREE.MeshStandardMaterial({map:IconTexture});
-//     //     iconMesh = new THREE.Mesh(iconGeometry, iconMaterial);
-      
-//     //     console.log("Heer")
-//     //     buttonGroup.add(iconMesh);
-//     //     buttonGroup.position.set(0.01, 0, 0.3);
-//     //     buttonGroup.rotation.y=Math.PI/2
-//     //   }
-//     // }
-//   }
-// }
-
-// // POINTER CONTROLS ---------------------------------------------------------------------------------->
+// POINTER CONTROLS ---------------------------------------------------------------------------------->
 let moveForward = false;
 let moveBackward = false;
 let moveLeft = false;
@@ -660,8 +559,6 @@ const instructions = document.getElementById("instructions");
 
 instructions.addEventListener("click" , function(){
   controlsPointer.lock();
-  console.log(controlsPointer.lock());
-  // updatePointerControls()
 })
 controlsPointer.addEventListener("lock" , function(){
   blocker.style.display = 'none';
@@ -718,7 +615,9 @@ document.addEventListener( 'keydown', onKeyDown );
 document.addEventListener( 'keyup', onKeyUp );
 const time = performance.now();
 const raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
-console.log(controlsPointer.isLocked === true)
+
+// updatePointerControls function ----------------------------------------------------------------------------------------->
+
 function updatePointerControls (){
 if (controlsPointer.isLocked === false){
   console.log("HERE UPDATED ")
@@ -765,6 +664,62 @@ if (controlsPointer.isLocked === false){
   }
 
 }
+}  
+
+// Raycaster function --------------------------------------------------------------------------------------------------->
+
+const raycaster2 = new THREE.Raycaster();
+document.addEventListener('mousemove', onMouseMove, false);
+
+function onMouseMove(event) {
+  // Perform raycasting
+  const mouse = new THREE.Vector2(
+    (event.clientX / window.innerWidth) * 2 - 1,
+    -(event.clientY / window.innerHeight) * 2 + 1
+  );
+  raycaster2.setFromCamera(mouse, cameraPersp);
+
+  // Hide the popup and custom pointer by default
+  const popupElement = document.getElementById('popup');
+  const customPointer = document.getElementById('custom-pointer');
+  popupElement.style.display = 'none';
+  customPointer.style.display = 'none';
+
+  // Check for intersections
+  const intersects = raycaster2.intersectObjects(scene.children, true);
+  if (intersects.length > 0) {
+    customPointer.style.display = 'block';
+
+    const hoveredObject = intersects[0].object;
+
+    if (hoveredObject.userData.name !== undefined && hoveredObject.userData.name !== 'undefined' && hoveredObject.userData.name !== 'RootNode' && hoveredObject.userData.name !== 'AC' && hoveredObject.userData.name !== 'AC_1' && hoveredObject.userData.name !== 'Metal_pipes' && hoveredObject.userData.name !== 'Metal_pipes_1' && hoveredObject.userData.name !== 'Art_Galary' && hoveredObject.userData.name !== 'Art_Galary_1' && hoveredObject.userData.name !== 'Wood' && hoveredObject.userData.name !== 'Wood_1' && hoveredObject.userData.name !== 'Frames' && hoveredObject.userData.name !== 'Frames_1'&& hoveredObject.userData.name !== 'Lights'&& hoveredObject.userData.name !== 'Lights_1'&& hoveredObject.userData.name !== 'Floor'&& hoveredObject.userData.name !== 'Floor_1'&& hoveredObject.userData.name !== 'pPlane1'&& hoveredObject.userData.name !== 'pPlane1_1') {
+
+      const htmlContent = `
+        <h3>Additional info here</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora similique quia corporis libero. In dolor qui repudiandae ullam! Corporis minus veritatis consequuntur natus. Neque, quidem?</p>
+        <a href="${hoveredObject.userData.name}">Click More</a>
+      `;
+
+      // Set the HTML content and display the popup
+      popupElement.innerHTML = htmlContent;
+      popupElement.style.display = 'block';
+      popupElement.classList.add('popup');
+
+      // Position the popup element near the mouse cursor
+      const x = event.clientX + -130;
+      const y = event.clientY  + 10;
+      popupElement.style.left = `${x}px`;
+      popupElement.style.top = `${y}px`;
+      
+      // Position the custom pointer at the mouse cursor  
+      const pointerx = event.clientX;
+      const pointery = event.clientY;
+      customPointer.style.left = `${pointerx}px`;
+      customPointer.style.top = `${pointery}px`;
+    }
+  } else {
+    customPointer.style.display = 'none'; // Hide the custom pointer
+  }
 }
 
     function onWindowResize() {
@@ -789,6 +744,7 @@ if (controlsPointer.isLocked === false){
     }
     function render() {
         requestAnimationFrame(render) 
+        // const intersects = raycaster2.intersectObjects(scene.children);
         // updatePointerControls()
         renderer.render(scene, currentCamera);
       }

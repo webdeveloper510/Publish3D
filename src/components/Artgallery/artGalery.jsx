@@ -39,6 +39,8 @@ const Gallery =()=>{
               <ArtWork />
             </div>
         <div id="container"></div>
+        <div id="popup" style={{display: "none"}}></div>
+        <div id="custom-pointer"></div>
 
         <template id="frame-template">
           <div className="frame">
