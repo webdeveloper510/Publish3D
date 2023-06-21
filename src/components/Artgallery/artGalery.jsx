@@ -39,9 +39,13 @@ const Gallery =()=>{
               <ArtWork />
             </div>
         <div id="container"></div>
-        <div id="popup" style={{display: "none"}}></div>
+        <div id="popup" style={{display: "none"}}> 
+        {/* <div id="popup-pointer">
+          </div> */}
+          </div>
         <div id="custom-pointer"></div>
-
+        {/* <div id="custom-cursor" class="custom-cursor"></div> */}
+        {/* <button class="fa fa-info-circle" id="info-but" style={{fontSize:"25px",color:"blue", borderRadius: "50%", outline: "none", border: "none"}}></button> */}
         <template id="frame-template">
           <div className="frame">
             <div id="image-name"></div>
