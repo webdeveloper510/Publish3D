@@ -122,6 +122,12 @@ const ArtWork = ()=>{
           orbit = new OrbitControls( currentCamera, renderer.domElement );
           orbit.update();
           orbit.addEventListener( 'change', render );
+          orbit.minDistance=-7;
+          orbit.maxDistance=1;
+          cameraPersp.updateProjectionMatrix();
+          // var boundingBox = new THREE.Box3().fromObject(scene.children);
+          // var collision = boundingBox.containsPoint( cameraPersp.position );
+
           
 
 // -------------------------------Adding Lights to the scene for  Object  -------------------------------------------------------------->
@@ -520,18 +526,7 @@ const ArtWork = ()=>{
           mesh.userData.name = ArrayWorks[i]
         }
       }
-      var maxSize = 0;
-      for (var i = 0; i < scene.children.length; i++) {
-        var box = new THREE.Box3().setFromObject(scene.children[i]);
-        //  console.log(box);
-        var size = box.getSize(new THREE.Vector3())
-        if (size > maxSize)
-            maxSize = size;
-      }
-      if (!maxSize)
-        maxSize = 1;
     } 
-
 
 
     // POINTER CONTROLS ---------------------------------------------------------------------------------->
