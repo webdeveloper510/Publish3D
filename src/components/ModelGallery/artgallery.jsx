@@ -655,6 +655,7 @@ const ArtWork = ()=>{
         function render() {
             requestAnimationFrame(render) 
             renderer.render(scene, currentCamera);
+            onWindowResize()
           }
   }
 Gallery()
